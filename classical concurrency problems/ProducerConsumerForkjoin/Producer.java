@@ -17,7 +17,7 @@ public class Producer extends RecursiveAction{
   protected void compute(){
 
       // System.out.println(sharedQ.size());
-      if(sharedQ.size() < 5){ 
+      if(sharedQ.size() < 3){ 
         sharedQ.add(1);//adding to queue
         System.out.println("Producer addedd 1 item");
         Consumer consumes = new Consumer(sharedQ);

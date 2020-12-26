@@ -7,6 +7,5 @@ abstract class Main extends RecursiveAction{
     Producer produces = new Producer(sharedQ);
     pool.invoke(produces);
     // System.exit(0);
-
   }
 }

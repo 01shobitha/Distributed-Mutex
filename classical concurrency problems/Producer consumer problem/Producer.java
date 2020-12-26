@@ -14,7 +14,7 @@ public class Producer extends Thread {
 	
 	@Override
 	public void run() {
-		for(int i = 0; i < 4; ++i) {
+		for(int i = 0; i < 3; ++i) {
 			synchronized (sharedQ) {
 				while(sharedQ.size() >= 1) {
 					try {

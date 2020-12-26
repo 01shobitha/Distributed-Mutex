@@ -27,7 +27,7 @@ public class Consumer extends Thread {
 				logger.info("consuming: " + number);
 				sharedQ.notify();
 				
-				if(number == 3) {
+				if(number == 2) {
 					break;
 				}
 			}
