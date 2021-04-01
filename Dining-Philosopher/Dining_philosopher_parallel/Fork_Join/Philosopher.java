@@ -19,13 +19,14 @@ public class Philosopher extends RecursiveAction {
 			if(!rightStick.available) {
 				leftStick.fork();
 				rightStick.fork();
-				System.out.println(name+" eating");
+				System.out.println(name+" wants eat");
 				try {
-					Thread.sleep(10000);
+					Thread.sleep(100);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				System.out.println("started eating");
 				leftStick.join();
 				rightStick.join();
 				System.out.println(name+ " is back to thinking");

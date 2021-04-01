@@ -16,6 +16,7 @@ public abstract class Driver extends RecursiveAction{
 			philosophers[i] = new Philosopher(name, sticks[i], sticks[(i+1)%5]);
 			System.out.println("Philosopher "+ i);
 			pool.invoke(philosophers[i]);
+			System.exit(0);
 		}
 	  }
 	

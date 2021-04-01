@@ -6,14 +6,14 @@ public class Chopstick extends RecursiveAction {
 		this.name = name;
 	}
 	
-	public synchronized void take() {
+	public  void take() {
 		available = false; // not available now
-		System.out.println("Using :"+name); 
+		System.out.println("Using "+name); 
 	}
 	
-	public synchronized void release() {
+	public  void release() {
 		available = true;// available
-		System.out.println("Released :"+name);
+		System.out.println("Released "+name);
 	}
 
 	@Override
@@ -21,7 +21,7 @@ public class Chopstick extends RecursiveAction {
 		// TODO Auto-generated method stub
 		take();
 		try {
-			Thread.sleep(10000);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
