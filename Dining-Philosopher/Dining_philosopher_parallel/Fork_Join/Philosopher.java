@@ -1,40 +1,46 @@
+package parallel;
+
 import java.util.concurrent.*;
-public class Philosopher extends RecursiveAction {
+public class Philosopher extends RecursiveAction{
+	
 	String name;
-	Chopstick leftStick,rightStick;
-    public Philosopher(String name,Chopstick left, Chopstick right)
-    {
-			this.name = name;
-			leftStick = left;
-			rightStick = right;
+	Object leftFork,rightFork;
+	int l_no,r_no;
+	public Philosopher(String name,Object l,Object r,int l_no,int r_no) {
+		this.name = name;
+		this.leftFork = l;
+		this.rightFork = r;
+		this.l_no = l_no;
+		this.r_no = r_no;
 	}
 	
-    public void compute() { 
-		eat();    	
-    }
-    void eat() {// eating process
-    	while(true) {
-		System.out.println("");
-		if(!leftStick.available) {
-			if(!rightStick.available) {
-				leftStick.fork();
-				rightStick.fork();
-				System.out.println(name+" wants eat");
-				try {
-					Thread.sleep(100);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				System.out.println("started eating");
-				leftStick.join();
-				rightStick.join();
-				System.out.println(name+ " is back to thinking");
-				break;
-				//back to thinking
+	private void doAction(String action){
+		System.out.println(name+" : "+action);
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	@Override
+	protected void compute() {
+		//thinking
+		doAction("Thinking");
+		while(true) {
+			doAction("Hungry");
+			synchronized (leftFork) {
+				doAction("want "+l_no+"as left fork");
 			}
+			synchronized (rightFork) {
+				doAction("want "+r_no+"as right fork");
+				//eating
+				System.out.println(name+ " got both forks. Eating");
+				doAction("puts back right fork");
+			}
+			//back to thinking
+			doAction("puts back left fork. Back to thinking. ");
 			
 		}
 	}
-    }
 }
