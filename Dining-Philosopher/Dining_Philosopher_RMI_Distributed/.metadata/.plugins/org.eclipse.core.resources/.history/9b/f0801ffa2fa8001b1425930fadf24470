@@ -1,0 +1,17 @@
+//RMI Server
+
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.concurrent.Semaphore;
+
+public class ForkServer implements Forks{
+	
+	static Semaphore[] s = { new Semaphore(1),
+			 				 new Semaphore(1),
+			 				 new Semaphore(1),
+			 				 new Semaphore(1),
+			 				 new Semaphore(1) }; 
+
+}
