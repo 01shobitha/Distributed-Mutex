@@ -1,3 +1,0 @@
-INDEX VERSION 1.131+C:\Users\Sreesruthi P K\Desktop\sem 8\FinalYearProject\Dining Philosopher\Dining_Philosopher_RMI_Distributed\.metadata\.plugins\org.eclipse.jdt.core
-1323362488.index
-632189125.index
