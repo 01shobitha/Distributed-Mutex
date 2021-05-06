@@ -14,10 +14,40 @@ public class Philosopher extends RecursiveAction{
 		this.r_no = r_no;
 	}
 	
-	private void doAction(String action){
+	private  void getChopstick(String action){
 		System.out.println(name+" : "+action);
 		try {
-			Thread.sleep(100);
+			TimeUnit.MILLISECONDS.sleep((int)(Math.random()*500));
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private  void thinking(String action){
+		System.out.println(name+" : "+action);
+		try {
+			TimeUnit.MILLISECONDS.sleep((int)(Math.random()*1000));
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private  void hungry(String action){
+		System.out.println(name+" : "+action);
+		try {
+			TimeUnit.MILLISECONDS.sleep((int)(Math.random()*100));
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private  void returnChopstick(String action){
+		System.out.println(name+" : "+action);
+		try {
+			TimeUnit.MILLISECONDS.sleep((int)(Math.random()*500));
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -26,20 +56,20 @@ public class Philosopher extends RecursiveAction{
 	@Override
 	protected void compute() {
 		//thinking
-		doAction("Thinking");
+		thinking("Thinking");
 		while(true) {
-			doAction("Hungry");
+			hungry("Hungry");
 			synchronized (leftFork) {
-				doAction("want "+l_no+"as left fork");
+				getChopstick("want "+l_no+" as left fork");
 			}
 			synchronized (rightFork) {
-				doAction("want "+r_no+"as right fork");
+				getChopstick("want "+r_no+" as right fork");
 				//eating
 				System.out.println(name+ " got both forks. Eating");
-				doAction("puts back right fork");
+				returnChopstick("puts back right fork");
 			}
 			//back to thinking
-			doAction("puts back left fork. Back to thinking. ");
+			thinking("puts back left fork. Back to thinking. ");
 			
 		}
 	}
