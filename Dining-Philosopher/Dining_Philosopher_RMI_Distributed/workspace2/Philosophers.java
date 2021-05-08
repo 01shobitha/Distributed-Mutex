@@ -46,16 +46,32 @@ public class Philosophers  extends Thread {
 
 	} 
 	
+	private void gotForks(int f1,int f2) {
+		return;
+	}
+	private void returnedForks(int f1,int f2) {
+		return;
+	}
+	private void hungry() {
+		return;
+	}
+	
 	public void run() {
 
 		 while(runThread) {
 
 		 try {
+			 hungry();
 			 this.sleep((int)(Math.random()*timeThink)); //Think
 			 frk.getForks(philNum);
+			 int fork1 = philNum;
+			 int fork2 = (philNum+1)%5;
+			 gotForks(fork1,fork2);
 			 numMeals[philNum]++; //Record the meal
 			 this.sleep((int)(Math.random()*timeEat)); //Eat
 			 frk.returnForks(philNum);
+			 returnedForks(fork1,fork2);
+
 		 } 
 		 catch (Exception e) {
 			 System.err.println("Philosophers exception");
