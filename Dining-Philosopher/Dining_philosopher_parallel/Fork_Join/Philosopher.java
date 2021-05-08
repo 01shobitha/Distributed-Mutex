@@ -24,53 +24,52 @@ public class Philosopher extends RecursiveAction{
 		}
 	}
 	
-	private  void thinking(String action){
-		System.out.println(name+" : "+action);
-		try {
-			TimeUnit.MILLISECONDS.sleep((int)(Math.random()*1000));
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	private  void thinking(){
+		return;
 	}
 	
-	private  void hungry(String action){
-		System.out.println(name+" : "+action);
+	private  void hungry(){
+		System.out.println(name+" is hungry");
+		return;
+	}
+	
+	@Override
+	protected void compute() {
+		//thinking
+		thinking();
 		try {
 			TimeUnit.MILLISECONDS.sleep((int)(Math.random()*100));
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	
-	private  void returnChopstick(String action){
-		System.out.println(name+" : "+action);
-		try {
-			TimeUnit.MILLISECONDS.sleep((int)(Math.random()*500));
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	@Override
-	protected void compute() {
-		//thinking
-		thinking("Thinking");
 		while(true) {
-			hungry("Hungry");
+			hungry();
+			System.out.println(name + " wants chopsticks "+l_no+" and "+r_no);
 			synchronized (leftFork) {
-				getChopstick("want "+l_no+" as left fork");
+				synchronized (rightFork) {
+					//eating
+					System.out.println(name+ " got forks "+l_no+" and "+r_no+". Eating");
+					gotChopsticks(leftFork,rightFork);
+					try {
+						TimeUnit.MILLISECONDS.sleep((int)(Math.random()*50));
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 			}
-			synchronized (rightFork) {
-				getChopstick("want "+r_no+" as right fork");
-				//eating
-				System.out.println(name+ " got both forks. Eating");
-				returnChopstick("puts back right fork");
-			}
+			returnedChopsticks(leftFork,rightFork);
 			//back to thinking
-			thinking("puts back left fork. Back to thinking. ");
+			System.out.println("puts back the forks. Back to thinking. ");
 			
 		}
+	}
+	
+	private void gotChopsticks(Object f1,Object f2) {
+		return;
+	}
+	private void returnedChopsticks(Object f1,Object f2) {
+		return;
 	}
 }
