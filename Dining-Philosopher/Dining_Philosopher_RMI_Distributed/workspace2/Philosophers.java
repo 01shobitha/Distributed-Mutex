@@ -61,9 +61,9 @@ public class Philosophers  extends Thread {
 		 while(runThread) {
 
 		 try {
-			 hungry();
 			 this.sleep((int)(Math.random()*timeThink)); //Think
-			 frk.getForks(philNum);
+			 hungry();
+			 frk.getForks(philNum);	
 			 int fork1 = philNum;
 			 int fork2 = (philNum+1)%5;
 			 gotForks(fork1,fork2);
