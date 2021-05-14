@@ -14,15 +14,6 @@ public class Philosopher extends RecursiveAction{
 		this.r_no = r_no;
 	}
 	
-	private  void getChopstick(String action){
-		System.out.println(name+" : "+action);
-		try {
-			TimeUnit.MILLISECONDS.sleep((int)(Math.random()*500));
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 	
 	private  void thinking(){
 		return;
@@ -45,12 +36,12 @@ public class Philosopher extends RecursiveAction{
 		}
 		while(true) {
 			hungry();
-			System.out.println(name + " wants chopsticks "+l_no+" and "+r_no);
+			System.out.println(name + " wants forks "+l_no+" and "+r_no);
 			synchronized (leftFork) {
 				synchronized (rightFork) {
 					//eating
 					System.out.println(name+ " got forks "+l_no+" and "+r_no+". Eating");
-					gotChopsticks(leftFork,rightFork);
+					gotForks(leftFork,rightFork);
 					try {
 						TimeUnit.MILLISECONDS.sleep((int)(Math.random()*50));
 					} catch (InterruptedException e) {
@@ -59,17 +50,17 @@ public class Philosopher extends RecursiveAction{
 					}
 				}
 			}
-			returnedChopsticks(leftFork,rightFork);
+			returnedForks(leftFork,rightFork);
 			//back to thinking
 			System.out.println("puts back the forks. Back to thinking. ");
 			
 		}
 	}
 	
-	private void gotChopsticks(Object f1,Object f2) {
+	private void gotForks(Object f1,Object f2) {
 		return;
 	}
-	private void returnedChopsticks(Object f1,Object f2) {
+	private void returnedForks(Object f1,Object f2) {
 		return;
 	}
 }
