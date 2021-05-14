@@ -3,12 +3,12 @@ package multithreaded_program;
 public class Philosopher extends Thread{
 	int Num;
     static int Number=0;
-    private Chopstick Chop;
-    public Philosopher(Chopstick Chop){
-	super();
-	this.Chop=Chop;
+    private Fork fork;
+    public Philosopher(Fork fork){
+    	super();
+    	this.fork=fork;
         Num=Number;
-	Number++;
+        Number++;
     }
     
     private void eating(){
@@ -21,12 +21,14 @@ public class Philosopher extends Thread{
         try { Thread.sleep(500);
         } catch (InterruptedException e) {}
     }
+    @Override
     public void run(){
         while(true){
             thinking();
-            Chop.take();
+            //hungry
+            fork.take();
             eating();
-            Chop.release();
+            fork.release();
         }
     }
 }

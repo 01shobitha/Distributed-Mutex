@@ -2,11 +2,11 @@ package multithreaded_program;
 
 public class Driver {
 	public static void main(String[] args){
-		Chopstick ch = new Chopstick();
-		new Philosopher(ch).start();
-		new Philosopher(ch).start();
-		new Philosopher(ch).start();
-		new Philosopher(ch).start();
-		new Philosopher(ch).start();
+		Fork f = new Fork();
+		new Philosopher(f).start();
+		new Philosopher(f).start();
+		new Philosopher(f).start();
+		new Philosopher(f).start();
+		new Philosopher(f).start();
 	}
 }
